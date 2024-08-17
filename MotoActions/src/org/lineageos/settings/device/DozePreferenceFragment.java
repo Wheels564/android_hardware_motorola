@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2015 The CyanogenMod Project
- * Copyright (C) 2017-2024 The LineageOS Project
+ * Copyright (C) 2017-2022 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,26 +24,26 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Switch;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragment;
-import androidx.preference.SwitchPreferenceCompat;
+import androidx.preference.SwitchPreference;
 
 import com.android.settingslib.widget.MainSwitchPreference;
+import com.android.settingslib.widget.OnMainSwitchChangeListener;
 
 public class DozePreferenceFragment extends PreferenceFragment
-        implements Preference.OnPreferenceChangeListener, OnCheckedChangeListener {
+        implements Preference.OnPreferenceChangeListener, OnMainSwitchChangeListener {
 
     private MainSwitchPreference mSwitchBar;
 
-    private SwitchPreferenceCompat mAlwaysOnDisplayPreference;
+    private SwitchPreference mAlwaysOnDisplayPreference;
 
-    private SwitchPreferenceCompat mHandwavePreference;
-    private SwitchPreferenceCompat mPickUpPreference;
-    private SwitchPreferenceCompat mPocketPreference;
+    private SwitchPreference mHandwavePreference;
+    private SwitchPreference mPickUpPreference;
+    private SwitchPreference mPocketPreference;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -97,7 +97,7 @@ public class DozePreferenceFragment extends PreferenceFragment
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    public void onSwitchChanged(Switch switchView, boolean isChecked) {
         MotoActionsSettings.enableDoze(getActivity(), isChecked);
 
         mSwitchBar.setChecked(isChecked);

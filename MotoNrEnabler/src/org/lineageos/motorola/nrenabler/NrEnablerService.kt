@@ -13,6 +13,7 @@ import android.content.IntentFilter
 import android.os.Handler
 import android.os.IBinder
 import android.telephony.CarrierConfigManager
+import android.telephony.SubscriptionInfo
 import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
 import android.util.Log
@@ -81,8 +82,7 @@ class NrEnablerService : Service() {
     }
 
     private fun validatePhoneId(phoneId: Int): Boolean {
-        val phoneCount =
-            getSystemService(TelephonyManager::class.java)?.activeModemCount ?: return false
+        val phoneCount = getSystemService(TelephonyManager::class.java).activeModemCount
         return phoneId in 0 until phoneCount
     }
 
