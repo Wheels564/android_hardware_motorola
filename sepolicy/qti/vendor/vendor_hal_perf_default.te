@@ -1,3 +1,5 @@
 allow vendor_hal_perf_default proc_sched_lib_mask_cpuinfo:file rw_file_perms;
 
 allow vendor_hal_perf_default proc_sched:file read;
+
+allow vendor_hal_perf_default proc_sched:file { open read };
